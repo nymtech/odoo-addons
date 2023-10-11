@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.security_whitelist</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="security_whitelist" string="Security Whitelist" data-key="security_whitelist">
+
+
+
+                    <h2>Accounting</h2>
+                    <div class="row mt16 o_settings_container">
+<!--                        To keep if we want to filter options-->
+<!--                        attrs="{'invisible':['!', ('available_module_names', 'ilike', 'purchase')]}"-->
+                        <div  class="col-12 col-lg-6 o_setting_box" title="Use whitelists for journals">
+                            <div class="o_setting_left_pane">
+                                <field name="module_security_whitelist_account_journal" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Use whitelists for journals</span>
+                                <div class="text-muted">
+                                    <p>Manage who can access each journal individually </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div  class="col-12 col-lg-6 o_setting_box" title="Use whitelists for account budgets">
+                            <div class="o_setting_left_pane">
+                                <field name="module_security_whitelist_account_budget" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Use whitelists for account budgets</span>
+                                <div class="text-muted">
+                                    <p>Manage who can access each budget individually </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <h2>Analytic</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div  class="col-12 col-lg-6 o_setting_box" title="Use whitelists for analytic accounts">
+                            <div class="o_setting_left_pane">
+                                <field name="module_security_whitelist_analytic_account" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Use whitelists for analytic accounts</span>
+                                <div class="text-muted">
+                                    <p>Manage who can access each analytic account individually</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div  class="col-12 col-lg-6 o_setting_box" title="Use whitelists for analytic tags">
+                            <div class="o_setting_left_pane">
+                                <field name="module_security_whitelist_analytic_tag" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Use whitelists for analytic tags</span>
+                                <div class="text-muted">
+                                    <p>Manage who can access each analytic tags individually </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

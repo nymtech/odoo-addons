@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="rule_allowed_user_ids_account_journal" model="ir.rule">
+            <field name="name">Show allowed journals</field>
+            <field ref="account.model_account_journal" name="model_id"/>
+            <field name="domain_force">[('allowed_user_ids','in', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="rule_allowed_user_ids_account_move" model="ir.rule">
+            <field name="name">Show move in allowed journals</field>
+            <field ref="account.model_account_move" name="model_id"/>
+            <field name="domain_force">[('journal_id.allowed_user_ids','in', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="rule_allowed_user_ids_account_move_line" model="ir.rule">
+            <field name="name">Show move.line in allowed journals</field>
+            <field ref="account.model_account_move_line" name="model_id"/>
+            <field name="domain_force">[('move_id.journal_id.allowed_user_ids','in', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

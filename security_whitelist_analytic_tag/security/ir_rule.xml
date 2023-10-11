@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="rule_allowed_user_ids_account_analytic_tag" model="ir.rule">
+            <field name="name">Show allowed tags</field>
+            <field ref="analytic.model_account_analytic_tag" name="model_id"/>
+            <field name="domain_force">[('allowed_user_ids','in', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

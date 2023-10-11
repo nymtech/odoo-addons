@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <function model="account.analytic.account" name="whitelist_groups" eval="['analytic.group_analytic_accounting']" />
+    </data>
+</odoo>
