@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+json_web_token_rule_access_dev,json_web_token_rule_access_dev,model_json_web_token,jwt_manager.group_jwt_manager,1,1,1,1
+json_web_token_payload_line_rule_access_dev,json_web_token_payload_line_rule_access_dev,model_json_web_token_payload_line,jwt_manager.group_jwt_manager,1,1,1,1

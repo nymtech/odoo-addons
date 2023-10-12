@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="JSON Web Tokens"
+                    id="jwt_menu" sequence="10"
+                    parent="base.next_id_5"
+                    action="json_web_token_action"/>
+
+    </data>
+</odoo>

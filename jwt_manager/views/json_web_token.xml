@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="json_web_token_form" model="ir.ui.view">
+            <field name="name">json.web.token.form</field>
+            <field name="model">json.web.token</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="generate_jwt" type="object" string="Generate JWT" attrs="{'invisible': [('jwt', '!=', False)]}" class="oe_highlight" />
+                        <button name="generate_jwt" type="object" string="Generate JWT"  attrs="{'invisible': [('jwt', '=', False)]}" confirm="Are you sure that you need to regenerate the token? It might have unintended effects."/>
+                    </header>
+                    <sheet>
+                        <h1><field name="name" /></h1>
+                        <group>
+                            <field name="jwt" password="True" widget="CopyClipboardChar"/>
+                            <field name="private_key_path" placeholder="Absolute path (ex: /home/odoo/privatecert.pem)" />
+                            <field name="public_key_path" placeholder="Absolute path (ex: /home/odoo/publiccert.cer)" />
+                            <field name="expiration_date" />
+                            <field name="algorithm" />
+                        </group>
+                        <notebook>
+                            <page string="Payload" name="page_payload">
+                                <field name="payload_line_ids" nolabel="1" colspan="2">
+                                    <tree editable="bottom">
+                                        <field name="key" />
+                                        <field name="value" />
+                                        <field name="type" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="o_attachment_preview"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="json_web_token_tree" model="ir.ui.view">
+            <field name="name">json.web.token.tree</field>
+            <field name="model">json.web.token</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="expiration_date" widget="remaining_days" />
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="json_web_token_action" model="ir.actions.act_window">
+            <field name="name">JSON Web Tokens</field>
+            <field name="res_model">json.web.token</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>
