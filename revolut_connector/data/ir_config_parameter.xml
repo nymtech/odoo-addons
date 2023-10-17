@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="revolut_api_url" model="ir.config_parameter">
+            <field name="key">revolut.api.url</field>
+            <field name="value">https://b2b.revolut.com/api/1.0</field>
+        </record>
+
+    </data>
+</odoo>

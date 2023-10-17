@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res_config_settings_view_form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='integration']" position="inside">
+                    <div class="col-12 col-lg-6 o_setting_box" id="external_pads_setting" groups="jwt_manager.group_jwt_manager" >
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <label for="revolut_jwt_id" string="Revolut Json Web Token"/>
+                            <div class="text-muted">
+                                <field name="revolut_jwt_id" />
+                                <button type="object" name="action_open_revolut_generate_jwt_wizard" icon="fa-plus-circle" string=" Generate" class="btn-link o_web_settings_access_rights" attrs="{'invisible': [('revolut_jwt_id', '!=', False)]}"/>
+                                <button type="object" name="action_synchronize_revolut_accounts" icon="fa-refresh" string="Synchronize bank accounts" class="btn-link o_web_settings_access_rights" attrs="{'invisible': [('revolut_jwt_id', '=', False)]}"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

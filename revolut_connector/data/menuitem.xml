@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Import Revolut transactions"
+                    id="import_revolut_transactions_menu" sequence="10"
+                    parent="account.account_account_menu"
+                    action="revolut_connector.revolut_import_statement_wizard_action" />
+
+    </data>
+</odoo>

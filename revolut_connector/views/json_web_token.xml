@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="json_web_token_form" model="ir.ui.view">
+            <field name="name">json_web_token_form</field>
+            <field name="model">json.web.token</field>
+            <field name="inherit_id" ref="jwt_manager.json_web_token_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <field name="is_revolut" invisible="1"/>
+                    <field name="revolut_token_is_expired" invisible="1"/>
+                    <field name="revolut_access_token" invisible="1" readonly="1"/>
+                    <field name="revolut_refresh_token" readonly="1" invisible="1" />
+                </xpath>
+                <xpath expr="//field[@name='name']/.." position="before">
+                    <widget name="web_ribbon" title="Revolut" bg_color="bg-success" attrs="{'invisible': ['|', ('is_revolut', '=', False), ('revolut_token_is_expired', '=', True)]}"/>
+                    <widget name="web_ribbon" title="Revolut" bg_color="bg-warning" attrs="{'invisible': ['|', ('is_revolut', '=', False), ('revolut_token_is_expired', '=', False)]}"/>
+                    <widget name="web_ribbon" title="Revolut" bg_color="bg-danger" attrs="{'invisible': [('authorized_endpoint_ids', '!=', [])]}"/>
+                    <widget name="web_ribbon" title="Revolut (deactivated)" bg_color="bg-danger" attrs="{'invisible': ['|', '|', ('is_revolut', '=', False), ('revolut_access_token', '!=', False), ('revolut_refresh_token', '!=', False)]}"/>
+                </xpath>
+
+                <xpath expr="//header/button[1]" position="before">
+                    <button name="refresh_revolut_access_token" type="object" string="Refresh Revolut access token" class="oe_highlight" attrs="{'invisible': ['|', ('is_revolut', '=', False), ('revolut_token_is_expired', '!=', True)]}" />
+                </xpath>
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Revolut" name="page_revolut" attrs="{'invisible': [('is_revolut', '=', False)]}">
+                        <div colspan="2" class="mb-2 alert alert-danger info_icon" role="status" attrs="{'invisible': [('authorized_endpoint_ids', '!=', [])]}">
+                             <p><i class="fa fa-warning" title="danger" /> You need to add at least one endpoint to be able to use the Revolut API</p>
+                        </div>
+                        <group string="Authorized endpoints">
+                            <field name="authorized_endpoint_ids" nolabel="1" colspan="2">
+                                <tree editable="bottom">
+                                    <field name="name" string="Expression" placeholder="Examples: /auth/token, /transactions?*" />
+                                </tree>
+                            </field>
+
+                            <div class="oe_row" colspan="2">
+                                <field name="show_revolut_help" invisible="1"/>
+                                <button name="action_toggle_help" icon="fa-plus" type="object" string="Show help" class="btn-link o_web_settings_access_rights" attrs="{'invisible': [('show_revolut_help', '=', True)]}"/>
+                                <button name="action_toggle_help" icon="fa-minus" type="object" string="Hide help" class="btn-link o_web_settings_access_rights" attrs="{'invisible': [('show_revolut_help', '=', False)]}" />
+                                <button name="action_reset_authorized_endpoints" icon="fa-refresh" type="object" string="Reset authorized endpoints" class="btn-link o_web_settings_access_rights" confirm="You are about to reset endpoints to default settings. Are you sure?" />
+                            </div>
+
+
+                            <div colspan="2" class="mb-2 alert alert-info info_icon" role="status" attrs="{'invisible': [('show_revolut_help', '=', False)]}">
+                                 <p>
+                                     <i class="fa fa-info-circle" title="info" />
+                                     Only allowed endpoints can be used to call the API from Odoo.<br />
+                                     Endpoint expressions must start with a <code>/</code> and you can use an asterisk (<code>*</code>) as a wildcard.
+                                 </p>
+                                <table>
+                                    <tr>
+                                        <td class="p-1 pr-4"><code>/auth/token</code></td>
+                                        <td>will accept only /auth/token</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-1 pr-4"><code>/transactions?*</code></td>
+                                        <td>accepts <code>/transactions?</code>, <code>/transactions?1234567890</code>, etc...</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-1 pr-4"><code>/accounts/*/bank-details</code></td>
+                                        <td>accepts <code>/accounts/hello/bank-details</code>, <code>/accounts/id-12345/bank-details</code></td>
+                                    </tr>
+                                </table>
+
+                                <p class="mt-3">Please check <a href="https://developer.revolut.com/docs/business/business-api" target="blank">Revolut API documentation</a> to search for useful endpoints</p>
+
+                            </div>
+                        </group>
+
+
+                        <group string="Misc infos">
+                            <field name="revolut_access_token_expiration" readonly="1" string="Token expiration"
+                                   decoration-warning="revolut_token_is_expired" decoration-success="not revolut_token_is_expired" />
+                            <div colspan="2" class="mb-2 alert alert-warning info_icon" role="status" attrs="{'invisible': [('revolut_token_is_expired', '=', False)]}">
+                                The access token will be automatically refreshed on next API call
+                            </div>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="revolut_generate_jwt_wizard_form" model="ir.ui.view">
+            <field name="name">revolut.generate.jwt.wizard.form</field>
+            <field name="model">revolut.generate.jwt.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="alert alert-info info_icon" role="status">
+                            Before creating a JWT, you need to generate a certificate pair. You can do this with the following command:<br />
+                            <code>
+                                openssl genrsa -out privatecert.pem 2048<br />
+                                openssl req -new -x509 -key privatecert.pem -out publiccert.cer -days 3650
+                            </code>
+                            <p>You will need to provide the paths to both files to Odoo in the 'private/public path' fields below.</p>
+
+                            <p>Then, you need to add a certificate in Revolut Settings. The OAuth URI url must be <b><field name="authorization_url" /></b> </p>
+                            <p>Once this is done, you will have all infos needed from Revolut</p>
+
+                        </div>
+                        <group>
+                            <field name="company_id" readonly="1" />
+                            <field name="private_key_path" placeholder="Absolute path to certificate (ex: /home/odoo/privatecert.pem)" />
+                            <field name="public_key_path" placeholder="Absolute path to certificate (ex: /home/odoo/publiccert.cer)" />
+                            <field name="expiration_date" />
+                            <field name="client_id" placeholder="Your ClientID in Revolut settings (ex: gCodL52h7ad_wcCtAnpDv5cZXEJ3NRa6uDQgGp_SS5A)"/>
+                            <field name="issuer" placeholder="The 'iss' or emitter of the JWT token found in Revolut settings"/>
+                        </group>
+                        <footer>
+                            <button name="generate_jwt_record" type="object" string="Generate JWT" class="oe_highlight" />
+                            <button string="Cancel" class="btn-secondary" special="cancel" />
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

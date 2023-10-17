@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="revolut_import_statement_wizard_form" model="ir.ui.view">
+            <field name="name">revolut.import.statement.wizard.form</field>
+            <field name="model">revolut.import.statement.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="journal_ids" widget="many2many_tags" />
+                            <field name="date_from" />
+                            <field name="date_to" />
+                            <field name="group_by" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="import_statements" string="Import" type="object" class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        
+        <record id="revolut_import_statement_wizard_action" model="ir.actions.act_window">
+            <field name="name">Import Revolut transactions</field>
+            <field name="res_model">revolut.import.statement.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+
+    </data>
+</odoo>
