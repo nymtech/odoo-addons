@@ -42,7 +42,9 @@ class WhitelistMixin(models.AbstractModel):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            vals["allowed_user_ids"] = [(4, self.env.user.id)]
+            if "allowed_user_ids" not in vals:
+                vals["allowed_user_ids"] = []
+            vals["allowed_user_ids"].append((4, self.env.user.id))
         return super(WhitelistMixin, self).create(vals_list)
 
     def write(self, vals):
