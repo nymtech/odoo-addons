@@ -6,4 +6,4 @@ class AccountAnalyticAccount(models.Model):
     _inherit = ["account.analytic.account", "whitelist.mixin"]
 
     def _get_allowed_group_ids(self):
-        return ['analytic.group_analytic_accounting']
+        return ["analytic.group_analytic_accounting"]

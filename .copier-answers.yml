@@ -1,0 +1,10 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: v1.1.0
+_src_path: git@gitlab.open-net.ch:ons/ons-addons-repo-template.git
+enable_ci: true
+modules_name: security_whitelist,security_whitelist_account_budget,security_whitelist_account_journal,security_whitelist_analytic_account,security_whitelist_analytic_tag
+odoo_version: 14.0
+org_name: Open Net Sàrl
+org_slug: ons
+repo_name: Security Whitelist Bundle
+repo_slug: onsp_security_bundle

@@ -1,0 +1,29 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+
+before_script:
+  - poetry install
+
+stages:
+  - pre
+  - lint
+  - format
+
+xml_syntax_check:
+  stage: pre
+  script:
+    ~/check_xml_syntax.sh
+
+xml_validation:
+  stage: pre
+  script:
+    ~/validate_odoo_xml.sh
+
+ruff:
+  stage: lint
+  script:
+    - poetry run ruff check .
+
+ruff_format:
+  stage: format
+  script:
+    - poetry run ruff format --check .
