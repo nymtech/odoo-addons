@@ -5,7 +5,7 @@
         <record id="rule_allowed_user_ids_crossovered_budget" model="ir.rule">
             <field name="name">Show allowed crossovered budget</field>
             <field ref="account_budget.model_crossovered_budget" name="model_id"/>
-            <field name="domain_force">['|', ('allowed_user_ids','in', user.id), ('user_id','=', user.id)]</field>
+            <field name="domain_force">['|', ('allowed_user_ids', 'in', user.id), ('user_id', '=', user.id)]</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_create" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -15,7 +15,7 @@
         <record id="rule_allowed_user_ids_crossovered_budget_lines" model="ir.rule">
             <field name="name">Show allowed crossovered budget lines</field>
             <field ref="account_budget.model_crossovered_budget_lines" name="model_id"/>
-            <field name="domain_force">['|', ('crossovered_budget_id.allowed_user_ids','in', user.id), ('crossovered_budget_id.user_id','=', user.id)]</field>
+            <field name="domain_force">['|', '|', ('crossovered_budget_id.allowed_user_ids', '=', False), ('crossovered_budget_id.allowed_user_ids', 'in', user.id), ('crossovered_budget_id.user_id', '=', user.id)]</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_create" eval="True"/>
             <field name="perm_write" eval="True"/>
