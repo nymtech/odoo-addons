@@ -1,4 +1,4 @@
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -15,14 +15,13 @@ class WhitelistMixin(models.AbstractModel):
     can_edit_allowed_user_ids = fields.Boolean(compute="_compute_edit_allowed_user_ids")
 
     def _get_allowed_group_ids(self):
-        """ To implement in submodules, should return a list of xml ids of res.groups """
+        """To implement in submodules, should return a list of xml ids of res.groups"""
         raise NotImplementedError()
 
-    @api.depends('allowed_user_ids')
+    @api.depends("allowed_user_ids")
     def _compute_edit_allowed_user_ids(self):
         allowed_groups = self._get_allowed_group_ids()
         self.can_edit_allowed_user_ids = any([self.env.user.has_group(group) for group in allowed_groups])
-
 
     @api.constrains("allowed_user_ids")
     def _check_allowed_user_ids(self):
@@ -47,9 +46,8 @@ class WhitelistMixin(models.AbstractModel):
 
     def write(self, vals):
         if not self[:1].can_edit_allowed_user_ids:
-            vals.pop('allowed_user_ids', None)
+            vals.pop("allowed_user_ids", None)
         return super(WhitelistMixin, self).write(vals)
-
 
     @api.model
     def whitelist_groups(self, *group_names):
