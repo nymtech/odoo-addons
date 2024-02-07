@@ -22,8 +22,8 @@
                 </form>
             </field>
         </record>
-        
-        
+
+
         <record id="revolut_import_statement_wizard_action" model="ir.actions.act_window">
             <field name="name">Import Revolut transactions</field>
             <field name="res_model">revolut.import.statement.wizard</field>
@@ -31,7 +31,7 @@
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
-        
+
 
     </data>
 </odoo>

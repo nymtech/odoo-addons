@@ -15,10 +15,9 @@ def display_message(message):
 
 
 class RevolutController(http.Controller):
-
-    @http.route('/revolut/authorize', type='http', auth='public')
+    @http.route("/revolut/authorize", type="http", auth="public")
     def authorize(self, **kwargs):
-        code = kwargs.get('code')
+        code = kwargs.get("code")
         if not code:
             return display_message("No authorization code provided")
         if not request.env.company.revolut_jwt_id:
@@ -29,4 +28,4 @@ class RevolutController(http.Controller):
         if not res:
             return display_message("Couldn't get an access token, check server logs for Revolut API response")
         else:
-            redirect(f'/web#id={request.env.company.revolut_jwt_id.id}&model=json.web.token&view_type=form')
+            redirect(f"/web#id={request.env.company.revolut_jwt_id.id}&model=json.web.token&view_type=form")
