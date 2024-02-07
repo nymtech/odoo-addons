@@ -15,7 +15,7 @@ exclude: |
   ^docs/_templates/.*\.html$|
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)
-files: ^(security_whitelist|security_whitelist_account_budget|security_whitelist_account_journal|security_whitelist_analytic_account|security_whitelist_analytic_tag)/
+files: ^(jwt_manager|revolut_connector|security_whitelist|security_whitelist_account_budget|security_whitelist_account_journal|security_whitelist_analytic_account|security_whitelist_analytic_tag)/
 repos:
   - repo: local
     hooks:

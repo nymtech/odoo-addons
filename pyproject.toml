@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "onsp_security_bundle"
+name = "nymtech-addons"
 version = "0.1.0"
 description = ""
 authors = ["Open Net Sàrl <support@open-net.ch>"]
@@ -13,7 +13,7 @@ ruff = "^0.1"
 
 [tool.ruff]
 line-length = 120
-include = ['security_whitelist/*.py', 'security_whitelist_account_budget/*.py', 'security_whitelist_account_journal/*.py', 'security_whitelist_analytic_account/*.py', 'security_whitelist_analytic_tag/*.py']
+include = ['jwt_manager/*.py', 'revolut_connector/*.py', 'security_whitelist/*.py', 'security_whitelist_account_budget/*.py', 'security_whitelist_account_journal/*.py', 'security_whitelist_analytic_account/*.py', 'security_whitelist_analytic_tag/*.py']
 
 [tool.ruff.lint]
 select = [

@@ -1,8 +1,10 @@
-from . import account_journal
-from . import account_bank_statement
-from . import account_bank_statement_line
-from . import json_web_token
-from . import res_company
-from . import res_config_settings
-from . import res_partner_bank
-from . import revolut_endpoint
+from . import (
+    account_bank_statement,
+    account_bank_statement_line,
+    account_journal,
+    json_web_token,
+    res_company,
+    res_config_settings,
+    res_partner_bank,
+    revolut_endpoint,
+)

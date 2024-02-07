@@ -18,5 +18,3 @@ This repository is licensed under AGPL-3.0
 ```bash
 pip install -r jwt_manager/requirements.txt
 ```
-
-
